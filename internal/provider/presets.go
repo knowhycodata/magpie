@@ -545,6 +545,15 @@ var presets = []PresetDef{
 	{ID: "cherryin", Name: "CherryIN", Icon: "cherryin-color", Kind: KindRelay,
 		Chat: "https://open.cherryin.ai/v1", Responses: "https://open.cherryin.ai/v1", Anthropic: "https://open.cherryin.ai",
 		Website: "https://open.cherryin.ai", KeysURL: "https://open.cherryin.ai/console/token"},
+	// LLMTR (llmtr.com): one OpenAI-compatible gateway for many vendors.
+	// Chat completions and Responses are at /v1; Messages, which serves
+	// every chat model, is at the root. Its own models are named
+	// llmtr/…, so a catalog id keeps that prefix (llmtr/llmtr/qwen3-8-27b
+	// is asked as llmtr/qwen3-8-27b). The list's supported_endpoints says
+	// which models answer on Responses alone.
+	{ID: "llmtr", Name: "LLMTR", Icon: "llmtr-color", Kind: KindRelay,
+		Chat: "https://llmtr.com/v1", Responses: "https://llmtr.com/v1", Anthropic: "https://llmtr.com",
+		Website: "https://llmtr.com", KeysURL: "https://llmtr.com/dashboard/keys"},
 	{ID: "yylx", Name: "鱼鱼连线", Icon: "yylx", Kind: KindRelay,
 		Chat: "https://app.yylx.io/v1", Anthropic: "https://app.yylx.io",
 		Website: "https://yylx.io", KeysURL: "https://app.yylx.io/keys",

@@ -2753,7 +2753,15 @@ func resolveIn(entries []Entry, id string) (Provider, string, bool) {
 		// the providers a request holds (All): an agent's value of a
 		// model not listed lands here
 		if p := lookIn(All(), pid); p != nil && p.On() && !p.ServesNone() {
-			return *p, model, true
+			pp := *p
+			// a model whose id starts with the provider's own
+			// (LLMTR's llmtr/qwen3-8-27b): asked by that id it is
+			// the model, not the part after the slash. The catalog
+			// id still cuts once (llmtr/llmtr/qwen3-8-27b).
+			if !pp.serves(model) && pp.serves(id) {
+				return pp, id, true
+			}
+			return pp, model, true
 		}
 	}
 	for i := range entries {
